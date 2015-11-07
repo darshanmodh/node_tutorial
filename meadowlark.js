@@ -2,6 +2,7 @@
  * Created by Darshan on 11/6/2015.
  */
 var express = require('express');
+var fortune = require('./lib/fortune.js');
 
 var app = express();
 
@@ -21,19 +22,11 @@ app.get('/', function(req, res){
     res.render('home');
 });
 
-//for dynamic view
-var fortunes = [
-    "Conquer your fears or they will conquer you.",
-    "Rivers need springs.",
-    "Do not fear what you don't know.",
-    "You will have a pleasant surprise.",
-    "Whenever possible, keep it simple.",
-];
 app.get('/about', function(req, res){
     //res.type('text/plain');
     //res.send('About Meadowlark Travel');
-    var randomFortune = fortunes[Math.floor(Math.random() * fortunes.length)]
-    res.render('about', {fortune:randomFortune});
+    //var randomFortune = fortunes[Math.floor(Math.random() * fortunes.length)]
+    res.render('about', {fortune: fortune.getFortune()});
 });
 
 //custom 404 page
